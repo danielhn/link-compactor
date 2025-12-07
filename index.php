@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ .  '/config.php';
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,9 +12,9 @@
 <body>
     <main>
         <h1>Link Shortener</h1>
-        <form action="" method="post">
+        <form action="./shorten_link.php" method="post">
             <label for="url">Link to shorten</label>
-            <input value="" type="url" name="url" id="url">
+            <input type="url" name="url" id="url" maxlength="<?= URL_MAX_LENGTH ?>" required>
             <button type="submit">Create short link</button>
         </form>
     </main>
