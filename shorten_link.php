@@ -1,15 +1,20 @@
 <?php
 
 require_once __DIR__ .  '/config.php';
+require_once __DIR__ . '/env.php';
 
 $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 
 if ($url && strlen($url) <= URL_MAX_LENGTH) {
-    $shortLink = generateShortLink();
+    $shortLinkId = generateShortLinkId();
+    $url = htmlspecialchars($url);
 
-    echo "Your short link is $shortLink";
-} else {
-    echo "You must input a valid link. The length should not exceed " . URL_MAX_LENGTH . " characters.";
+    $db = new PDO(SQLITE_DATABASE_PATH);
+    $sql = "INSERT INTO linkshortener (id, url) VALUES (:id, :url)";
+
+    $db->prepare($sql)->execute([$shortLinkId, $url]);
+
+    $shortLink = generateShortLink($shortLinkId);
 }
 
 function generateShortLinkId(): string
@@ -24,9 +29,8 @@ function generateShortLinkId(): string
     return $randomString;
 }
 
-function generateShortLink(): string
+function generateShortLink(string $shortLinkId): string
 {
-    $shortLinkId = generateShortLinkId();
     $serverName = $_SERVER['SERVER_NAME'];
 
     // Detect if the server supports https, to prepend the short link with it
@@ -38,3 +42,25 @@ function generateShortLink(): string
 
     return $protocol . $serverName . '/' . $shortLinkId;
 }
+?>
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link shortener</title>
+</head>
+<body>
+<main>
+    <?php if (!empty($shortLink)): ?>
+        <h1>Link shortened successfully</h1>
+        <p>Your short link for <?= $url ?> is <a href="<?= $shortLink ?>"><?= $shortLink ?></a></p>
+    <?php else: ?>
+        <h1>Error</h1>
+        <p>You must input a valid link. The length should not exceed <?= URL_MAX_LENGTH ?> characters.</p>
+    <?php endif ?>
+    <p><a href="/">Go to homepage</a></p>
+</main>
+</body>
+</html>
