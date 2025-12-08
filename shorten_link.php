@@ -6,15 +6,31 @@ require_once __DIR__ . '/env.php';
 $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 
 if ($url && strlen($url) <= URL_MAX_LENGTH) {
-    $shortLinkId = generateShortLinkId();
+    $db = new PDO(SQLITE_DATABASE_PATH);
+
     $url = htmlspecialchars($url);
 
-    $db = new PDO(SQLITE_DATABASE_PATH);
-    $sql = "INSERT INTO linkshortener (id, url) VALUES (:id, :url)";
+    $shortLinkId = getShortLinkIdIfExists($db, $url);
 
-    $db->prepare($sql)->execute([$shortLinkId, $url]);
+    if (empty($shortLinkId)) {
+        $shortLinkId = generateShortLinkId();
+
+        $sql = "INSERT INTO linkshortener (id, url) VALUES (:id, :url)";
+
+        $db->prepare($sql)->execute([$shortLinkId, $url]);
+    }
 
     $shortLink = generateShortLink($shortLinkId);
+}
+
+function getShortLinkIdIfExists(PDO $db, string $url): string | null
+{
+    $sql = "SELECT id FROM linkshortener WHERE url = ? LIMIT 1";
+
+    $stmt = $db->prepare($sql);
+    $stmt->execute([$url]);
+    $shortLinkId = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $shortLinkId['id'];
 }
 
 function generateShortLinkId(): string
