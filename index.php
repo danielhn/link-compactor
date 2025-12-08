@@ -34,6 +34,7 @@ function validateShortLinkId(string $shortLinkId): false|int
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Link shortener</title>
 </head>
 <body>
@@ -41,8 +42,10 @@ function validateShortLinkId(string $shortLinkId): false|int
         <?php if (empty($url) && empty($pageNotFound)): ?>
         <h1>Link Shortener</h1>
         <form action="./shorten_link.php" method="post">
-            <label for="url">Link to shorten</label>
-            <input type="url" name="url" id="url" maxlength="<?= URL_MAX_LENGTH ?>" required>
+            <div>
+                <label for="url">Link to shorten</label>
+                <input type="url" name="url" id="url" maxlength="<?= URL_MAX_LENGTH ?>" required>
+            </div>
             <button type="submit">Create short link</button>
         </form>
         <?php elseif (!empty($url)): ?>
