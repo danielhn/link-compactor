@@ -56,7 +56,13 @@ function generateShortLink(string $shortLinkId): string
         $protocol = 'http://';
     }
 
-    return $protocol . $serverName . '/' . $shortLinkId;
+    if ($_SERVER['SERVER_PORT'] !== 80 && $_SERVER['SERVER_PORT'] !== 443) {
+        $fullShortLink = $protocol . $serverName . ':' .  $_SERVER['SERVER_PORT'] . '/' . $shortLinkId;
+    } else {
+        $fullShortLink = $protocol . $serverName . '/' . $shortLinkId;
+    }
+
+    return $fullShortLink;
 }
 ?>
 
