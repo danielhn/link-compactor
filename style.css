@@ -12,19 +12,15 @@ main {
     margin: 5rem auto 0 auto;
     background-color: white;
     padding: 1rem 3rem 2rem;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
 }
 
-h1 {
+h1, p {
     text-align: center;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    max-width: 100%;
 }
 
 label {
@@ -33,27 +29,29 @@ label {
     margin-bottom: 0.4rem;
 }
 
+input, button, p {
+    font-size: 1.2rem;
+}
+
+input, button {
+    border: 2px solid gray;
+}
+
 input {
     width: 100%;
     padding: 0.3rem;
-    font-size: 1.2rem;
-    border: 2px solid gray;
-    margin-bottom: 1rem;
 }
 
 button {
-    margin: 1rem auto;
+    margin-top: 1rem;
     background-color: transparent;
-    border: 2px solid gray;
-    font-size: 1.2rem;
     font-weight: bold;
     padding: 0.5rem;
     cursor: pointer;
     min-width: 12rem;
+    align-self: center;
 }
 
 p {
-    text-align: center;
-    font-size: 1.2rem;
     overflow-wrap: break-word;
 }
