@@ -1,2 +1,2 @@
 <?php
-const SQLITE_DATABASE_PATH = 'sqlite:database.sqlite';
+const SQLITE_DATABASE_PATH = "sqlite:" . __DIR__ . "/database.sqlite";
