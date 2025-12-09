@@ -1,12 +1,11 @@
 <?php
 
 require_once '../config.php';
-require_once '../env.php';
 
 $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 
 if ($url && strlen($url) <= URL_MAX_LENGTH) {
-    $db = new PDO(SQLITE_DATABASE_PATH);
+    $db = require_once '../db.php';
 
     $url = htmlspecialchars($url);
 
@@ -29,7 +28,7 @@ function getShortLinkIdIfExists(PDO $db, string $url): string | null
 
     $stmt = $db->prepare($sql);
     $stmt->execute([$url]);
-    $shortLinkId = $stmt->fetch(PDO::FETCH_ASSOC);
+    $shortLinkId = $stmt->fetch();
     return $shortLinkId['id'];
 }
 

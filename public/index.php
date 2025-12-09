@@ -1,6 +1,5 @@
 <?php
 require_once '../config.php';
-require_once '../env.php';
 
 if ($_SERVER['REQUEST_URI'] !== '/index.php' && $_SERVER['REQUEST_URI'] !== '/') {
     $requestURI = explode('/', $_SERVER['REQUEST_URI']);
@@ -8,13 +7,13 @@ if ($_SERVER['REQUEST_URI'] !== '/index.php' && $_SERVER['REQUEST_URI'] !== '/')
     // First string in path should be short link id
     $shortLinkId = $requestURI[1];
     if (validateShortLinkId($shortLinkId)) {
-        $db = new PDO(SQLITE_DATABASE_PATH);
+        $db = require_once '../db.php';
 
         $sql = "SELECT url FROM " . DATABASE_TABLE_NAME . " WHERE id = ? LIMIT 1";
 
         $stmt = $db->prepare($sql);
         $stmt->execute([$shortLinkId]);
-        $originalLink = $stmt->fetch(PDO::FETCH_ASSOC);
+        $originalLink = $stmt->fetch();
         $url = $originalLink['url'];
     } else {
         $pageNotFound = true;
