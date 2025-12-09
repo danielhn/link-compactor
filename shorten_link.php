@@ -15,7 +15,7 @@ if ($url && strlen($url) <= URL_MAX_LENGTH) {
     if (empty($shortLinkId)) {
         $shortLinkId = generateShortLinkId();
 
-        $sql = "INSERT INTO linkshortener (id, url) VALUES (:id, :url)";
+        $sql = "INSERT INTO " . DATABASE_TABLE_NAME . " (id, url) VALUES (:id, :url)";
 
         $db->prepare($sql)->execute([$shortLinkId, $url]);
     }
@@ -25,7 +25,7 @@ if ($url && strlen($url) <= URL_MAX_LENGTH) {
 
 function getShortLinkIdIfExists(PDO $db, string $url): string | null
 {
-    $sql = "SELECT id FROM linkshortener WHERE url = ? LIMIT 1";
+    $sql = "SELECT id FROM " . DATABASE_TABLE_NAME . " WHERE url = ? LIMIT 1";
 
     $stmt = $db->prepare($sql);
     $stmt->execute([$url]);

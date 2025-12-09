@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_URI'] !== '/index.php' && $_SERVER['REQUEST_URI'] !== '/')
     if (validateShortLinkId($shortLinkId)) {
         $db = new PDO(SQLITE_DATABASE_PATH);
 
-        $sql = "SELECT url FROM linkshortener WHERE id = ? LIMIT 1";
+        $sql = "SELECT url FROM " . DATABASE_TABLE_NAME . " WHERE id = ? LIMIT 1";
 
         $stmt = $db->prepare($sql);
         $stmt->execute([$shortLinkId]);
