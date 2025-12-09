@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ .  '/config.php';
-require_once __DIR__ . '/env.php';
+require_once '../config.php';
+require_once '../env.php';
 
 if ($_SERVER['REQUEST_URI'] !== '/index.php' && $_SERVER['REQUEST_URI'] !== '/') {
     $requestURI = explode('/', $_SERVER['REQUEST_URI']);
@@ -41,7 +41,7 @@ function validateShortLinkId(string $shortLinkId): false|int
     <main>
         <?php if (empty($url) && empty($pageNotFound)): ?>
         <h1>Link Shortener</h1>
-        <form action="./shorten_link.php" method="post">
+        <form action="shorten_link.php" method="post">
             <div>
                 <label for="url">Link to shorten</label>
                 <input type="url" name="url" id="url" maxlength="<?= URL_MAX_LENGTH ?>" required>

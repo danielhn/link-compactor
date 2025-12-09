@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ .  '/config.php';
-require_once __DIR__ . '/env.php';
+require_once '../config.php';
+require_once '../env.php';
 
 $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 
