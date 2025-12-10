@@ -14,7 +14,7 @@ if ($url && strlen($url) <= URL_MAX_LENGTH) {
     if (empty($shortLinkId)) {
         $shortLinkId = generateShortLinkId();
 
-        $sql = "INSERT INTO " . DATABASE_TABLE_NAME . " (id, url) VALUES (:id, :url)";
+        $sql = "INSERT INTO " . DATABASE_TABLE_NAME . " (id, url) VALUES (?, ?)";
 
         $db->prepare($sql)->execute([$shortLinkId, $url]);
     }
