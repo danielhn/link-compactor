@@ -29,7 +29,11 @@ function getShortLinkIdIfExists(PDO $db, string $url): string | null
     $stmt = $db->prepare($sql);
     $stmt->execute([$url]);
     $shortLinkId = $stmt->fetch();
-    return $shortLinkId['id'];
+    if ($shortLinkId) {
+        return $shortLinkId['id'];
+    } else {
+        return null;
+    }
 }
 
 function generateShortLinkId(): string
