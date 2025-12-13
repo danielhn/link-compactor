@@ -4,7 +4,7 @@
 
 body {
     font-family: sans-serif;
-    background-color: teal;
+    background-color: #a0a6aa;
 }
 
 main {
@@ -80,5 +80,20 @@ p {
     main {
         width: 95%;
         padding: 1rem;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    main, button, p, a {
+        color: white;
+    }
+    button {
+        border-color: white;
+    }
+    body {
+        background-color: #595b60;
+    }
+    main {
+        background-color: #2d2d2d;
     }
 }
