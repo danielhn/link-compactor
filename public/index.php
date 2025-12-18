@@ -14,7 +14,12 @@ if ($_SERVER['REQUEST_URI'] !== '/index.php' && $_SERVER['REQUEST_URI'] !== '/')
         $stmt = $db->prepare($sql);
         $stmt->execute([$shortLinkId]);
         $originalLink = $stmt->fetch();
-        $url = $originalLink['url'];
+        
+        if ($originalLink) {
+            $url = $originalLink['url'];
+        } else {
+            $pageNotFound = true;
+        }
     } else {
         $pageNotFound = true;
     }
