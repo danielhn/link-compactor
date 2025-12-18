@@ -42,7 +42,7 @@ function generateShortLinkId(): string
     $randomString = '';
 
     for ($i = 0; $i < SHORT_LINK_ID_LENGTH; $i++) {
-        $randomChar = random_int(0, strlen($chars));
+        $randomChar = mt_rand(0, strlen($chars));
         $randomString .= $chars[$randomChar];
     }
     return $randomString;
