@@ -50,19 +50,16 @@ function generateShortLinkId(): string
 
 function generateShortLink(string $shortLinkId): string
 {
-    $serverName = $_SERVER['SERVER_NAME'];
-
-    // Detect if the server supports https, to prepend the short link with it
-    if (!empty($_SERVER['HTTPS'])) {
+    if (SERVER_USE_HTTPS) {
         $protocol = 'https://';
     } else {
         $protocol = 'http://';
     }
 
-    if ($_SERVER['SERVER_PORT'] !== 80 && $_SERVER['SERVER_PORT'] !== 443) {
-        $fullShortLink = $protocol . $serverName . ':' .  $_SERVER['SERVER_PORT'] . '/' . $shortLinkId;
+    if (SERVER_PORT !== 80 && SERVER_PORT !== 443) {
+        $fullShortLink = $protocol . SERVER_DOMAIN . ':' .  SERVER_PORT . '/' . $shortLinkId;
     } else {
-        $fullShortLink = $protocol . $serverName . '/' . $shortLinkId;
+        $fullShortLink = $protocol . SERVER_DOMAIN . '/' . $shortLinkId;
     }
 
     return $fullShortLink;
