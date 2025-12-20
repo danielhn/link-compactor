@@ -1,6 +1,6 @@
 services:
-  linkshortener:
-    container_name: linkshortener
+  linkcompactor:
+    container_name: linkcompactor
     restart: unless-stopped
     volumes:
          - ./database:/var/www/html/database

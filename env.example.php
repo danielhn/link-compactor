@@ -3,7 +3,7 @@
 const DEFAULT_DATABASE_TYPE = 'sqlite';
 const DEFAULT_SQLITE_DATABASE_PATH = __DIR__ . '/database/database.sqlite';
 const DEFAULT_MYSQL_DATABASE_HOST = 'localhost:3306';
-const DEFAULT_MYSQL_DATABASE_NAME = 'linkshortener';
+const DEFAULT_MYSQL_DATABASE_NAME = 'linkcompactor';
 const DEFAULT_MYSQL_DATABASE_USER = 'root';
 const DEFAULT_MYSQL_DATABASE_PASSWORD = 'root';
 const DEFAULT_MYSQL_DATABASE_CHARSET = 'utf8mb4';

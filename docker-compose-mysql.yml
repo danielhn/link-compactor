@@ -1,10 +1,10 @@
 services:
-  linkshortener:
-    container_name: linkshortener
+  linkcompactor:
+    container_name: linkcompactor
     environment:
       DATABASE_TYPE: "mysql"
       MYSQL_DATABASE_HOST: "mysql:3306"
-      MYSQL_DATABASE_NAME: "linkshortener"
+      MYSQL_DATABASE_NAME: "linkcompactor"
       MYSQL_DATABASE_USER: "root"
       MYSQL_DATABASE_PASSWORD: "root"
     restart: unless-stopped
@@ -16,7 +16,7 @@ services:
   mysql:
     image: mysql:latest
     environment:
-      MYSQL_DATABASE: "linkshortener"
+      MYSQL_DATABASE: "linkcompactor"
       MYSQL_ROOT_PASSWORD: "root"
     volumes:
       - mysql_data:/var/lib/mysql

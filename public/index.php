@@ -39,12 +39,12 @@ function validateShortLinkId(string $shortLinkId): false|int
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Link shortener</title>
+    <title>Link Compactor</title>
 </head>
 <body>
     <main>
         <?php if (empty($url) && empty($pageNotFound)): ?>
-        <h1>Link Shortener</h1>
+        <h1>Link Compactor</h1>
         <form action="shorten_link.php" method="post">
             <div>
                 <label for="url">Link to shorten</label>
