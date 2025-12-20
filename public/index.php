@@ -53,6 +53,7 @@ function validateShortLinkId(string $shortLinkId): false|int
             <button type="submit">Create short link</button>
         </form>
         <?php elseif (!empty($url)): ?>
+        <?php http_response_code(200) ?>
         <h1>Check the link first</h1>
             <p>You are going to <a rel="noopener noreferer nofollow" href="<?= $url ?>"><?= $url ?></a>.
                 If you want to continue, click on the link.
