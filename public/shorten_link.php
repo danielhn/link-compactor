@@ -50,16 +50,16 @@ function generateShortLinkId(): string
 
 function generateShortLink(string $shortLinkId): string
 {
-    if (SERVER_USE_HTTPS) {
+    if (SHORT_LINK_USE_HTTPS) {
         $protocol = 'https://';
     } else {
         $protocol = 'http://';
     }
 
-    if (SERVER_PORT !== 80 && SERVER_PORT !== 443) {
-        $fullShortLink = $protocol . SERVER_DOMAIN . ':' .  SERVER_PORT . '/' . $shortLinkId;
+    if (SHORT_LINK_PORT !== 80 && SHORT_LINK_PORT !== 443) {
+        $fullShortLink = $protocol . SHORT_LINK_DOMAIN . ':' .  SHORT_LINK_PORT . '/' . $shortLinkId;
     } else {
-        $fullShortLink = $protocol . SERVER_DOMAIN . '/' . $shortLinkId;
+        $fullShortLink = $protocol . SHORT_LINK_DOMAIN . '/' . $shortLinkId;
     }
 
     return $fullShortLink;
