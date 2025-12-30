@@ -1,11 +1,9 @@
 services:
   linkcompactor:
+    image: serversideup/php:8.4-fpm-nginx
     container_name: linkcompactor
     restart: unless-stopped
     volumes:
-         - ./database:/var/www/html/database
-    post_start:
-      - command: chown -R www-data /var/www/html/database
-        user: root
+         - ./:/var/www/html
     ports:
       - '8568:8080'
