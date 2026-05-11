@@ -38,7 +38,8 @@ services:
     container_name: linkcompactor
     environment:
       DATABASE_TYPE: "mysql"
-      MYSQL_DATABASE_HOST: "mysql:3306"
+      MYSQL_DATABASE_HOST: "mysql"
+      MYSQL_DATABASE_PORT: "3306"
       MYSQL_DATABASE_NAME: "linkcompactor"
       MYSQL_DATABASE_USER: "root"
       MYSQL_DATABASE_PASSWORD: "root"
@@ -107,7 +108,8 @@ volumes:
 - `DATABASE_TYPE`: The database type to use. Can be `sqlite`, `mysql` or `pgsql`. By default, is set to `sqlite`.
 - `SQLITE_DATABASE_PATH`: The path to the SQLite database file. By default, is set to `__DIR__ . '/database/database.
 sqlite'`. If you change it, and you want to use docker, you also need to change the path from the command in the docker compose file to the database.
-- `MYSQL_DATABASE_HOST`: The host of the MySQL database. By default, is set to `localhost:3306`.
+- `MYSQL_DATABASE_HOST`: The host of the MySQL database. By default, is set to `localhost`.
+- `MYSQL_DATABASE_PORT`: The port of the MySQL database. By default, is set to `3306`.
 - `MYSQL_DATABASE_NAME`: The name of the MySQL database. By default, is set to `linkcompactor`.
 - `MYSQL_DATABASE_USER`: The user of the MySQL database. By default, is set to `root`.
 - `MYSQL_DATABASE_PASSWORD`: The password of the MySQL database. By default, is set to `root`.
