@@ -4,6 +4,6 @@ services:
     container_name: linkcompactor
     restart: unless-stopped
     volumes:
-         - ./:/var/www/html
+      - ./:/var/www/html
     ports:
       - '8568:8080'

@@ -3,9 +3,9 @@
 require_once 'env.php';
 
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
+    PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
 if (DATABASE_TYPE === 'sqlite') {
@@ -14,7 +14,7 @@ if (DATABASE_TYPE === 'sqlite') {
     $dsn = "mysql:host=" . MYSQL_DATABASE_HOST .
         ";port=" . MYSQL_DATABASE_PORT .
         ";dbname=" . MYSQL_DATABASE_NAME .
-        ";charset=". MYSQL_DATABASE_CHARSET;
+        ";charset=" . MYSQL_DATABASE_CHARSET;
     $db = new PDO($dsn, MYSQL_DATABASE_USER, MYSQL_DATABASE_PASSWORD, $options);
 } else if (DATABASE_TYPE === 'pgsql') {
     $dsn = "pgsql:host=" . PGSQL_DATABASE_HOST .

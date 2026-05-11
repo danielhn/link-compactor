@@ -22,7 +22,7 @@ if ($url && strlen($url) <= URL_MAX_LENGTH) {
     $shortLink = generateShortLink($shortLinkId);
 }
 
-function getShortLinkIdIfExists(PDO $db, string $url): string | null
+function getShortLinkIdIfExists(PDO $db, string $url): string|null
 {
     $sql = "SELECT id FROM " . DATABASE_TABLE_NAME . " WHERE url = ? LIMIT 1";
 
@@ -57,13 +57,14 @@ function generateShortLink(string $shortLinkId): string
     }
 
     if (SHORT_LINK_PORT !== 80 && SHORT_LINK_PORT !== 443) {
-        $fullShortLink = $protocol . SHORT_LINK_DOMAIN . ':' .  SHORT_LINK_PORT . '/' . $shortLinkId;
+        $fullShortLink = $protocol . SHORT_LINK_DOMAIN . ':' . SHORT_LINK_PORT . '/' . $shortLinkId;
     } else {
         $fullShortLink = $protocol . SHORT_LINK_DOMAIN . '/' . $shortLinkId;
     }
 
     return $fullShortLink;
 }
+
 ?>
 
 <!doctype html>
