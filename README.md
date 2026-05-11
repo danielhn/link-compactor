@@ -88,7 +88,7 @@ services:
       POSTGRES_DATABASE: "linkcompactor"
       POSTGRES_PASSWORD: "postgres"
     volumes:
-      - pgsql_data:/var/lib/postgresql/data
+      - pgsql_data:/var/lib/postgresql
 
 volumes:
   pgsql_data:
