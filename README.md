@@ -20,6 +20,8 @@ services:
     image: ghcr.io/danielhn/link-compactor:1.1.0
     container_name: linkcompactor
     restart: unless-stopped
+    environment:
+      PHP_OPCACHE_ENABLE: "1"
     volumes:
          - ./database:/var/www/html/database
     post_start:
@@ -43,6 +45,7 @@ services:
       MYSQL_DATABASE_NAME: "linkcompactor"
       MYSQL_DATABASE_USER: "root"
       MYSQL_DATABASE_PASSWORD: "root"
+      PHP_OPCACHE_ENABLE: "1"
     restart: unless-stopped
     ports:
       - '8568:8080'
@@ -75,6 +78,7 @@ services:
       PGSQL_DATABASE_NAME: "linkcompactor"
       PGSQL_DATABASE_USER: "postgres"
       PGSQL_DATABASE_PASSWORD: "postgres"
+      PHP_OPCACHE_ENABLE: "1"
     restart: unless-stopped
     ports:
       - '8568:8080'
