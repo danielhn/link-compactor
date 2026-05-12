@@ -17,7 +17,7 @@ The image used in the docker compose files is based on the [serversideup fpm-ngi
 ```yaml copy
 services:
   linkcompactor:
-    image: ghcr.io/danielhn/link-compactor:1.1.0
+    image: ghcr.io/danielhn/link-compactor:1.1.1
     container_name: linkcompactor
     restart: unless-stopped
     environment:
@@ -36,7 +36,7 @@ services:
 ```yaml copy
 services:
   linkcompactor:
-    image: ghcr.io/danielhn/link-compactor:1.1.0
+    image: ghcr.io/danielhn/link-compactor:1.1.1
     container_name: linkcompactor
     environment:
       DATABASE_TYPE: "mysql"
@@ -70,7 +70,7 @@ volumes:
 ```yaml copy
 services:
   linkcompactor:
-    image: ghcr.io/danielhn/link-compactor:1.1.0
+    image: ghcr.io/danielhn/link-compactor:1.1.1
     container_name: linkcompactor
     environment:
       DATABASE_TYPE: "pgsql"
